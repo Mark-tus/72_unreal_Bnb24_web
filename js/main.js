@@ -155,3 +155,45 @@
    }
 
 })()
+// Existing JavaScript code remains unchanged
+
+// Chat Button
+const chatButton = document.getElementById('chatButton');
+// Chat Popup
+const chatPopup = document.getElementById('chatPopup');
+// Chat Input
+const chatInput = document.getElementById('chatInput');
+// Send Button
+const sendButton = document.getElementById('sendButton');
+// Chat Messages Container
+const chatMessages = document.getElementById('chatMessages');
+
+// Event Listener for Chat Button Click
+chatButton.addEventListener('click', () => {
+    chatPopup.style.display = 'block';
+});
+
+// Event Listener for Send Button Click
+sendButton.addEventListener('click', () => {
+    const message = chatInput.value;
+    if (message.trim() !== '') {
+        // Create a new message element
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message');
+        messageElement.textContent = message;
+
+        // Append the message to the chat messages container
+        chatMessages.appendChild(messageElement);
+
+        // Clear the chat input
+        chatInput.value = '';
+    }
+});
+function openChat() {
+  document.getElementById("myChat").style.display = "block";
+}
+
+// Function to close the chat popup
+function closeChat() {
+  document.getElementById("myChat").style.display = "none";
+}
