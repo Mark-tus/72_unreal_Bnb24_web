@@ -84,7 +84,7 @@ cb=googleTranslateElementInit">
 
 
   
-      <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>
+      <a href="#appointmentForm" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>
            <!-- html for chat section-->
            <button id="chatButton" class="chat-button">Chat</button>  </header><!-- End Header -->
   <div id="chatPopup" class="chat-popup">
@@ -363,7 +363,56 @@ cb=googleTranslateElementInit">
       </div>
     </section> Appointment Section -->
 
-    <form id="appointmentForm" class="php-email-form">
+    <section id="appointmentForm" class="appointment section-bg">
+      <div class="container">
+          <div class="section-title">
+              <h2>Make an Appointment</h2>
+              <p>To make an appointment, patients can fill out a simple online form with their personal and medical information, preferred date and time, and reason for the visit. They can also choose to receive appointment reminders via email or text message. Our staff will contact them to confirm their appointment and answer any questions they may have.</p>
+          </div>
+          <form id="appointmentForm" class="php-email-form">
+              <div class="row">
+                  <div class="col-md-4 form-group">
+                      <input type="text" name="name" class="form-control" id="name" placeholder="Your Name">
+                  </div>
+                  <div class="col-md-4 form-group mt-3 mt-md-0">
+                      <input type="email" class="form-control" name="email" id="email" placeholder="Your Email">
+                  </div>
+                  <div class="col-md-4 form-group mt-3 mt-md-0">
+                      <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone">
+                  </div>
+              </div>
+          
+            <div class="row">
+              <div class="col-md-4 form-group mt-3">
+                <input type="datetime-local" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" >
+                
+              </div>
+              <div class="col-md-4 form-group mt-3">
+                <select name="age" id="age" class="form-select">
+                  <option value="">Select Age</option>
+                  <option value="Department 1">Below 18</option>
+                  <option value="Department 2">18-40</option>
+                  <option value="Department 3">40 above</option>
+                </select>
+                
+              </div>
+              <div class="col-md-4 form-group mt-3">
+                <select name="doctor" id="doctor" class="form-select">
+                  <option value="">Select Doctor</option>
+                  <option value="Doctor 1">Dr. Smith (Specialist)</option>
+                  <option value="Doctor 2">Dr. Pratik (General Physicians )</option>
+                  <option value="Doctor 3">Dr. Vinita (Cardiology)</option>
+                  <option value="Doctor 4">Dr. Namitha (Neurosurgeon)</option>
+                </select>  
+              </div>
+            </div>
+              <div class="form-group mt-3">
+                  <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
+              </div>
+              <div class="text-center"><button type="submit" onclick="submitForm()">Make an Appointment</button></div>
+          </form>
+      </div>
+  </section>
 
 
     <!-- ======= Doctors Section ======= -->
@@ -610,7 +659,7 @@ cb=googleTranslateElementInit">
   
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
+    var firebaseConfig = {
       apiKey: "AIzaSyACLSuv9fu9_MGa5FBD4JL1YIToXgvkV3g",
       authDomain: "unrealhealthcare.firebaseapp.com",
       projectId: "unrealhealthcare",
@@ -620,47 +669,48 @@ cb=googleTranslateElementInit">
       measurementId: "G-S3XVH0MX15"
     };
   
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
+  // Initialize Firebase
+  //   const app = initializeApp(firebaseConfig);
+  //  const analytics = getAnalytics(app);
 
-   
-  var appointmentForm = document.getElementById('appointmentForm');
+// Reference to the Firebase database
+firebase.initializeApp(firebaseConfig);
 
-  appointmentForm.addEventListener('submit', function(event) {
-    event.preventDefault();
+// Reference to the Firebase database
+var db = firebase.firestore();
 
-    var formData = new FormData(appointmentForm);
-    var name = formData.get('name');
-    var email = formData.get('email');
-    var phone = formData.get('phone');
-    var date = formData.get('date');
-    var age = formData.get('age');
-    var doctor = formData.get('doctor');
-    var message = formData.get('message');
+// Form submission handler
 
-    // Save the form data to Firebase Firestore
-    var db = firebase.firestore();
-    db.collection("appointments").add({
-      name: name,
-      email: email,
-      phone: phone,
-      date: date,
-      age: age,
-      doctor: doctor,
-      message: message
-    })
-    .then(function(docRef) {
-      console.log("Document written with ID: ", docRef.id);
-      // Reset the form after successful submission
-      appointmentForm.reset();
-      alert("Appointment submitted successfully!");
-    })
-    .catch(function(error) {
-      console.error("Error adding document: ", error);
-      alert("An error occurred. Please try again.");
-    });
+document.getElementById("appointmentForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  var name = document.getElementById("name").value;
+  var email = document.getElementById("email").value;
+  var phone = document.getElementById("phone").value;
+  var date = document.getElementById("date").value;
+  var age = document.getElementById("age").value;
+  var doctor = document.getElementById("doctor").value;
+  var message = document.getElementById("message").value;
+
+  db.collection("appointments").add({
+    name: name,
+    email: email,
+    phone: phone,
+    date: date,
+    age: age,
+    doctor: doctor,
+    message: message
+  })
+  .then(function(docRef) {
+    console.log("Document written with ID: ", docRef.id);
+    alert("Appointment request submitted successfully!");
+    document.getElementById("appointmentForm").reset();
+  })
+  .catch(function(error) {
+    console.error("Error adding document: ", error);
+    alert("An error occurred. Please try again later.");
   });
+});
 
 
 

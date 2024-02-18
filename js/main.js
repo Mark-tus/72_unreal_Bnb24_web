@@ -206,35 +206,3 @@ function closeChat() {
 closeButton.addEventListener('click', () => {
     chatPopup.style.display = 'none';
 });
-/*
-// Function to change the language to English
-function switchToEnglish() {
-  document.documentElement.lang = "en";
-  document.getElementById("header").textContent = "My Website";
-  // Update other elements as needed
-}
-
-// Function to change the language to Spanish
-function switchToSpanish() {
-  document.documentElement.lang = "es";
-  document.getElementById("header").textContent = "Mi Sitio Web";
-  // Update other elements as needed
-}
-function switchToHindi() {
-  document.documentElement.lang = "hi";
-  document.getElementById("header").textContent = "मेरी वेबसाइट";
-  document.getElementById("about").textContent = "मेरे बारे में";
-  document.getElementById("resume").textContent = "शोध";
-  document.getElementById("portfolio").textContent = "पोर्टफोलियो";
-  document.getElementById("services").textContent = "सेवाएं";
-  document.getElementById("contact").textContent = "संपर्क";
-  // Update other elements as needed
-}
-
-document.getElementById("hindiButton").addEventListener("click", switchToHindi);
-
-// Example usage: Call these functions when a language switch button is clicked
-document.getElementById("englishButton").addEventListener("click", switchToEnglish);
-document.getElementById("spanishButton").addEventListener("click", switchToSpanish);
-
-*/
