@@ -1163,3 +1163,77 @@ section {
   visibility: visible;
   opacity: 1;
 }
+
+/* Existing CSS styles remain unchanged */
+
+/* Chat Popup Styles */
+#chatPopup {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  z-index: 9999;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  max-width: 300px;
+  display: none;
+}
+
+#chatContainer {
+  padding: 10px;
+}
+
+#chatMessages {
+  height: 200px;
+  overflow-y: scroll;
+  margin-bottom: 10px;
+}
+
+#chatInput {
+  width: calc(100% - 70px);
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#sendButton {
+  width: 60px;
+  padding: 5px;
+  margin-left: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Chat Message Styles */
+.message {
+  background-color: #f2f2f2;
+  color: #333;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+.open-button {
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  z-index: 9;
+}
+
+/* Chat popup styles */
+.chat-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Chat container styles */
+.chat-container {
+  padding: 10px;
+}

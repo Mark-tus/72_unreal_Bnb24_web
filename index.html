@@ -58,13 +58,25 @@
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
+        <div class="navbar-button">
+        
+      </div>
+    
       </nav><!-- .navbar -->
-
+     
+  
       <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>
-
-    </div>
+           <!-- html for chat section-->
+      <button onclick="openChat()" class="open-button">Chat</button>
   </header><!-- End Header -->
-
+  <div class="chat-popup" id="myChat">
+    <div class="chat-container">
+        <h1>Chat Popup</h1>
+        <p>Hello! This is a chat popup.</p>
+        <button onclick="closeChat()">Close</button>
+    </div>
+</div>
+    
   <!-- ======= Home Section ======= -->
   <section id="home" class="d-flex align-items-center">
     <div class="container">
